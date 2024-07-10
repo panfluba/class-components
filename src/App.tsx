@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './components/Search/Search';
 import Block from './components/Block/Block';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Item } from './components/types';
 import axios from 'axios';
 
@@ -59,16 +60,18 @@ class App extends Component<Record<string, never>, State> {
   render() {
     const { searchTerm, filteredResults, loading, error } = this.state;
     return (
-      <div>
-        <Search searchTerm={searchTerm} onSearch={this.handleSearch} />
-        {loading && <div>Подождите, идет загрузка всех элементов...</div>}
-        {error && (
-          <div>
-            Ошибка загрузки, повторите еще раз или перезагрузите страницу
-          </div>
-        )}
-        <Block results={filteredResults} />
-      </div>
+      <ErrorBoundary>
+        <div>
+          <Search searchTerm={searchTerm} onSearch={this.handleSearch} />
+          {loading && <div>Подождите, идет загрузка всех элементов...</div>}
+          {error && (
+            <div>
+              Ошибка загрузки, повторите еще раз или перезагрузите страницу
+            </div>
+          )}
+          <Block results={filteredResults} />
+        </div>
+      </ErrorBoundary>
     );
   }
 }
