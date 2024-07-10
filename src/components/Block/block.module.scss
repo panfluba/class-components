@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+}
+
+.block {
+  background-color: rgb(39, 39, 39);
+  padding: 20px 40px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
