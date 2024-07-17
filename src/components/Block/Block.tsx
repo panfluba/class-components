@@ -1,26 +1,22 @@
-import { Component } from 'react';
-import { Item } from '../types';
 import styles from './block.module.scss';
 
-interface Props {
-  results: Item[];
-}
+type TBlockProps = {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+};
 
-class Block extends Component<Props> {
-  render() {
-    const { results } = this.props;
-    return (
-      <div className={styles.root}>
-        {results.map(item => (
-          <div className={styles.block} key={item.id}>
-            <img src={item.image} alt={item.title} />
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
+const Block: React.FC<TBlockProps> = ({ id, title, image, description }) => {
+  return (
+    <div className={styles.root}>
+      <div className={styles.block} key={id}>
+        <img src={image} alt={title} />
+        <h2>{title}</h2>
+        <p>{description}</p>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Block;

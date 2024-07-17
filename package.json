@@ -1,6 +1,7 @@
 {
   "name": "react-class-components",
   "private": true,
+  "homepage": "https://panfluba.github.io/class-components/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "gh-pages": "^6.1.1",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
