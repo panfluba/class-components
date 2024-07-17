@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function NotFound() {
-  return <div>NotFound</div>;
-}
+const NotFound: React.FC = () => {
+  return <h1> 404 - Страница не найдена</h1>;
+};
+
+export default NotFound;
