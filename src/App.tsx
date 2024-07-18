@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchPage from './pages/SearchPage';
@@ -9,7 +8,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<SearchPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound resetSearch={() => {}} />} />
       </Routes>
     </Router>
   );

@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './search.module.scss';
 import findIcon from '../../assets/img/search.svg';
 
-type TSearchProps = {
+interface Props {
   searchTerm: string;
   onSearch: (searchTerm: string) => void;
-};
+}
 
-const Search: React.FC<TSearchProps> = ({ searchTerm, onSearch }) => {
-  const [term, setTerm] = useState(searchTerm);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      onSearch(term);
-    }, 500);
-    return () => clearTimeout(timeoutId);
-  }, [term, onSearch]);
+const Search: React.FC<Props> = ({ searchTerm, onSearch }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSearch(event.target.value);
+  };
 
   return (
     <div className={styles.root}>
       <img
         className={`${styles.icon} ${styles.icon__find}`}
         src={findIcon}
-        alt="search-icon"
+        alt="Search Icon"
       />
       <input
         className={styles.input}
         type="text"
-        value={term}
-        onChange={e => setTerm(e.target.value)}
+        value={searchTerm}
+        onChange={handleChange}
       />
     </div>
   );
