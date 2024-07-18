@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Pagination from './Pagination';
 
 describe('Pagination', () => {
@@ -16,7 +17,7 @@ describe('Pagination', () => {
     );
 
     const buttons = getAllByRole('button');
-    expect(buttons).toHaveLength(5); // 50 items / 10 items per page = 5 pages
+    expect(buttons).toHaveLength(5);
   });
 
   test('disables current page button', () => {

@@ -1,5 +1,6 @@
 import React from 'react'; // Add this import
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Block from './Block';
 import { Item } from '../types';
 
