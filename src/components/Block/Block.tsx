@@ -1,20 +1,24 @@
 import styles from './block.module.scss';
+import { Item } from '../types';
 
 type TBlockProps = {
-  id: string;
-  title: string;
-  image: string;
-  description: string;
+  results: Item[];
 };
 
-const Block: React.FC<TBlockProps> = ({ id, title, image, description }) => {
+const Block: React.FC<TBlockProps> = ({ results }) => {
   return (
     <div className={styles.root}>
-      <div className={styles.block} key={id}>
-        <img src={image} alt={title} />
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
+      {results.length === 0 ? (
+        <div>Ничего не найдено</div>
+      ) : (
+        results.map(item => (
+          <div className={styles.block} key={item.id}>
+            <div>{item.title}</div>
+            <img src={item.image} alt={item.title} />
+            <div>{item.description}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 };

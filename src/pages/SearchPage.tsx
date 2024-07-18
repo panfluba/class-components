@@ -1,4 +1,3 @@
-// pages/SearchPage.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Search from '../components/Search/Search';
@@ -73,9 +72,7 @@ const SearchPage: React.FC = () => {
           currentPage={page}
           onPageChange={newPage => navigate(`/?page=${newPage}`)}
         />
-        {paginatedResults.map(item => (
-          <Block key={item.id} {...item} />
-        ))}
+        <Block results={paginatedResults} />
       </div>
     </ErrorBoundary>
   );
