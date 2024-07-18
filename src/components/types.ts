@@ -3,9 +3,9 @@ export interface Item {
   image: string;
   title: string;
   description: string;
-  types: number[];
-  sizes: number[];
-  price: number;
-  category: number;
-  rating: number;
+  // types: number[];
+  // sizes: number[];
+  // price: number;
+  // category: number;
+  // rating: number;
 }
