@@ -1,7 +1,7 @@
 import styles from './block.module.scss';
 
 type TBlockProps = {
-  id: number;
+  id: string;
   title: string;
   image: string;
   description: string;
