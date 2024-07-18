@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './block.module.scss';
 import { Item } from '../types';
 

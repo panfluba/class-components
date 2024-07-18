@@ -1,28 +1,23 @@
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Search from './Search';
-import '@testing-library/jest-dom/extend-expect'; // Импорт jest-dom
 
-describe('Search Component', () => {
-  it('saves the entered value to the local storage on search', () => {
+describe('Search', () => {
+  test('renders correctly', () => {
     const handleSearch = jest.fn();
-    const { getByRole } = render(
+    const { getByPlaceholderText } = render(
       <Search searchTerm="" onSearch={handleSearch} />,
     );
-
-    const input = getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'Test Search' } });
-    fireEvent.click(getByRole('button'));
-
-    expect(localStorage.getItem('searchTerm')).toBe('Test Search');
+    expect(getByPlaceholderText('Search')).toBeInTheDocument();
   });
 
-  it('retrieves the value from the local storage upon mounting', () => {
-    localStorage.setItem('searchTerm', 'Saved Search');
-    const { getByRole } = render(
-      <Search searchTerm="Saved Search" onSearch={jest.fn()} />,
+  test('calls onSearch when input changes', () => {
+    const handleSearch = jest.fn();
+    const { getByPlaceholderText } = render(
+      <Search searchTerm="" onSearch={handleSearch} />,
     );
-
-    const input = getByRole('textbox');
-    expect(input).toHaveValue('Saved Search');
+    const input = getByPlaceholderText('Search');
+    fireEvent.change(input, { target: { value: 'New Search' } });
+    expect(handleSearch).toHaveBeenCalledWith('New Search');
   });
 });

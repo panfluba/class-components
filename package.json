@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "deploy": "gh-pages -d build",
     "predeploy": "npm start build",
-    "test": "jest --coverage",
+    "test": "jest --coverage --config jest.config.ts",
     "test:watch": "jest --watch"
   },
   "jest": {
@@ -31,9 +31,14 @@
     "axios": "^1.7.2",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
     "@types/lodash": "^4.17.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -47,9 +52,15 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^8.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-css-modules-transform": "^4.4.2",
+    "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.3.2",
     "sass": "^1.77.6",
-    "typescript": "^5.2.2",
+    "ts-jest": "^29.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3",
     "vite": "^5.3.1"
   }
 }

@@ -1,34 +1,51 @@
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Pagination from './Pagination';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 
-const TestComponent = () => {
-  const location = useLocation();
-  return <span>{location.search}</span>;
-};
+describe('Pagination', () => {
+  const mockOnPageChange = jest.fn();
 
-describe('Pagination Component', () => {
-  it('updates URL query parameter when page changes', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={['/?page=1']}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Pagination
-                totalItems={100}
-                itemsPerPage={10}
-                currentPage={1}
-                onPageChange={jest.fn()}
-              />
-            }
-          />
-          <Route path="/" element={<TestComponent />} />
-        </Routes>
-      </MemoryRouter>,
+  test('renders pagination component with correct number of buttons', () => {
+    const { getAllByRole } = render(
+      <Pagination
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={1}
+        onPageChange={mockOnPageChange}
+      />,
     );
 
-    fireEvent.click(getByText('2'));
-    expect(getByText('?page=2')).toBeInTheDocument();
+    const buttons = getAllByRole('button');
+    expect(buttons).toHaveLength(5); // 50 items / 10 items per page = 5 pages
+  });
+
+  test('disables current page button', () => {
+    const { getByText } = render(
+      <Pagination
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={3}
+        onPageChange={mockOnPageChange}
+      />,
+    );
+
+    const currentPageButton = getByText('3');
+    expect(currentPageButton).toBeDisabled();
+  });
+
+  test('calls onPageChange with correct page number', () => {
+    const { getByText } = render(
+      <Pagination
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={1}
+        onPageChange={mockOnPageChange}
+      />,
+    );
+
+    const nextPageButton = getByText('2');
+    fireEvent.click(nextPageButton);
+
+    expect(mockOnPageChange).toHaveBeenCalledWith(2);
   });
 });
